@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAMSA // Archive Viewer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ─── SCREEN 1: BOOT ─── -->
+  <div id="screen-boot" class="screen active">
+    <div class="boot-container">
+      <pre id="boot-log" class="boot-log"></pre>
+      <span class="boot-cursor"></span>
+    </div>
+    <button class="boot-skip" id="btn-skip">SKIP &rarr;</button>
+  </div>
+
+  <!-- ─── SCREEN 2: LOGIN ─── -->
+  <div id="screen-login" class="screen">
+    <div class="login-card">
+      <div class="dragon-wrap">
+        <img src="../logo.webp" alt="Samsa Logo" class="dragon-img">
+        <div class="dragon-glow"></div>
+      </div>
+      <div class="login-brand">
+        <span class="brand-os">Samsa</span>
+        <span class="brand-sub">Archive Viewer // Kali Build</span>
+      </div>
+      <div class="login-form">
+        <div class="field-group">
+          <label>Username</label>
+          <input type="text" id="inp-user" autocomplete="off" spellcheck="false" placeholder="root">
+        </div>
+        <div class="field-group">
+          <label>Password</label>
+          <input type="password" id="inp-pass" placeholder="••••••••">
+        </div>
+        <div id="login-error" class="login-error hidden">Access denied. Invalid credentials.</div>
+        <button id="btn-login" class="btn-kali">
+          <span>LOGIN</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+      <div class="login-hint">Login: <code>caesar</code> / <code>blehh</code></div>
+    </div>
+  </div>
+
+  <!-- ─── SCREEN 3: DASHBOARD ─── -->
+  <div id="screen-dashboard" class="screen">
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="sidebar-brand">
+          <img src="../logo.webp" alt="" class="sidebar-dragon">
+          <div>
+            <div class="sidebar-title">SAMSA</div>
+            <div class="sidebar-sub">Archive Viewer</div>
+          </div>
+        </div>
+        <div class="sidebar-load">
+          <label for="file-input" class="btn-load">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Load Archive
+          </label>
+          <input type="file" id="file-input" accept=".json" style="display:none">
+        </div>
+        <div id="archive-meta" class="archive-meta hidden">
+          <div class="meta-row"><span class="meta-k">Conversations</span><span class="meta-v" id="meta-convs">—</span></div>
+          <div class="meta-row"><span class="meta-k">Messages</span><span class="meta-v" id="meta-msgs">—</span></div>
+          <div class="meta-row"><span class="meta-k">Media Files</span><span class="meta-v" id="meta-media">—</span></div>
+        </div>
+        <div class="search-wrap">
+          <input type="text" id="search-convs" placeholder="Search conversations..." class="search-input">
+        </div>
+        <div id="conv-list" class="conv-list">
+          <div class="empty-state">No archive loaded.<br>Load samsa_archive.json to begin.</div>
+        </div>
+      </div>
+      <div class="sidebar-footer">
+        <button id="btn-logout" class="btn-logout">Logout</button>
+      </div>
+    </aside>
+
+    <main class="chat-pane" id="chat-pane">
+      <div class="chat-empty">
+        <img src="../logo.webp" alt="" class="empty-dragon">
+        <p class="empty-label">Select a conversation</p>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

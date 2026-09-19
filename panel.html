@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAMSA Control Panel</title>
+  <link rel="stylesheet" href="panel.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <h1 class="logo">SAMSA</h1>
+        <span class="subtitle">DM Archive Tool</span>
+      </div>
+      <div class="clock" id="live-clock">00:00:00</div>
+    </header>
+
+    <section class="status-bar">
+      <div class="status-indicator">
+        <span class="status-dot" id="status-dot"></span>
+        <span class="status-text" id="status-text">Stopped</span>
+      </div>
+      <div class="timer" id="session-timer">00:00</div>
+    </section>
+
+    <div id="media-progress" style="display:none; background: var(--panel-bg); border: 1px solid var(--border-color); padding: 5px 10px; font-size: 11px; color: var(--accent-blue); text-align: center; border-radius: 4px;">
+      Downloading media: <span id="media-count">0/0</span>
+    </div>
+
+    <section class="stats-row">
+      <div class="stat-card">
+        <span class="stat-value" id="stat-convs">0</span>
+        <span class="stat-label">Conversations</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" id="stat-msgs">0</span>
+        <span class="stat-label">Messages</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" id="stat-media">0</span>
+        <span class="stat-label">Media URLs</span>
+      </div>
+    </section>
+
+    <section class="controls smart-controls">
+      <button id="btn-start" class="btn btn-huge primary">START</button>
+      <button id="btn-pause" class="btn btn-huge warning" style="display:none">PAUSE</button>
+      <button id="btn-resume" class="btn btn-huge primary" style="display:none">RESUME</button>
+      <button id="btn-stop" class="btn btn-huge danger" style="display:none">STOP</button>
+      <button id="btn-live" class="btn btn-huge primary" style="background-color: #8b5cf6;">LIVE MODE</button>
+      <button id="btn-stop-live" class="btn btn-huge danger" style="display:none; background-color: #ef4444;">STOP LIVE</button>
+    </section>
+    
+    <div style="display: flex; gap: 10px; margin-bottom: 5px;">
+        <button id="btn-clear" class="btn danger" style="flex: 1;">CLEAR ARCHIVE</button>
+    </div>
+
+    <section class="export-section">
+      <div class="section-header">
+        <h3>Export Data</h3>
+      </div>
+      <div class="export-buttons">
+        <button id="btn-export-all-json" class="btn">All to JSON</button>
+        <button id="btn-export-all-csv" class="btn">All to CSV</button>
+      </div>
+    </section>
+
+    <section class="live-log">
+      <div class="section-header">
+        <h3>Activity Log</h3>
+        <button id="btn-copy-logs" class="btn-small">Copy</button>
+      </div>
+      <div class="log-container" id="log-container">
+        <!-- Logs will be appended here -->
+      </div>
+    </section>
+
+    <section class="conversation-list">
+      <div class="section-header">
+        <h3>Conversations</h3>
+        <div>
+          <button id="btn-refresh-list" class="btn-small">Refresh</button>
+          <button id="btn-select-all" class="btn-small">Select All</button>
+        </div>
+      </div>
+      <div style="display: flex; gap: 5px; margin-bottom: 10px;">
+        <input type="text" id="input-manual-id" placeholder="Enter username or ID" style="flex: 1; padding: 5px; background: var(--bg-color); color: var(--text-primary); border: 1px solid var(--border-color); font-family: var(--font-mono); font-size: 11px;">
+        <button id="btn-add-manual" class="btn-small">Add</button>
+      </div>
+      <div class="conv-container" id="conv-container">
+        <!-- Conversation items here -->
+      </div>
+    </section>
+  </div>
+  <script src="panel.js"></script>
+</body>
+</html>

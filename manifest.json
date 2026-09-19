@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "Samsa",
+  "version": "1.0.0",
+  "description": "Archive your own Instagram DMs locally",
+  "permissions": [
+    "storage",
+    "tabs",
+    "windows",
+    "alarms",
+    "activeTab",
+    "downloads",
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://www.instagram.com/*",
+    "https://i.instagram.com/*",
+    "https://*.cdninstagram.com/*",
+    "https://*.fbcdn.net/*",
+    "https://*.fbsbx.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.instagram.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["hook.js"],
+      "matches": ["https://www.instagram.com/*"]
+    },
+    {
+      "resources": ["archieves/*", "archieves/**/*", "viewer/*", "*.webp", "*.png", "*.jpg"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "action": {}
+}
